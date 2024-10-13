@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
 }
 
 class RekomendasiWisataBanyumas extends StatelessWidget {
-  final List<Map<String, String>> Wisata = [
+  final List<Map<String, String>> TempatWisata = [
     {
       'namaWisata': 'Curug Jenggala',
       'deskripsi':
@@ -61,7 +61,7 @@ class RekomendasiWisataBanyumas extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 46, 159, 252),
       ),
       body: ListView.builder(
-        itemCount: Wisata.length,
+        itemCount: TempatWisata.length,
         itemBuilder: (context, index) {
           return Card(
             margin: EdgeInsets.all(10),
@@ -70,7 +70,7 @@ class RekomendasiWisataBanyumas extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Text(
-                    Wisata[index]['namaWisata']!,
+                    TempatWisata[index]['namaWisata']!,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -85,7 +85,7 @@ class RekomendasiWisataBanyumas extends StatelessWidget {
                   ),
                   SizedBox(height: 10),
                   Text(
-                    Wisata[index]['deskripsi']!,
+                    TempatWisata[index]['deskripsi']!,
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 10),
