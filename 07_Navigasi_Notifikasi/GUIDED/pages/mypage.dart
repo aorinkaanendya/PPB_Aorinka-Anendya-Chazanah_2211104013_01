@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:pertemuan_7/models/product.dart';
 import 'package:pertemuan_7/pages/detail.dart';
+import 'package:pertemuan_7/main.dart'; // Import main.dart untuk menggunakan showNotification
 
 class MyPage extends StatelessWidget {
   MyPage({super.key});
 
+  // Daftar produk yang akan ditampilkan
   final List<Product> products = [
     Product(
       id: 1,
@@ -31,6 +33,7 @@ class MyPage extends StatelessWidget {
       deskripsi:
           'Headphone dengan kualitas bass yang kuat dan suara yang tinggi',
     ),
+    // Produk lainnya bisa ditambahkan di sini
   ];
 
   @override
@@ -50,13 +53,24 @@ class MyPage extends StatelessWidget {
             title: Text(product.nama),
             subtitle: Text(product.deskripsi),
             trailing: Text('Rp ${product.harga.toStringAsFixed(2)}'),
-            //
-            onTap: () {
+            onTap: () async {
+              // Menampilkan log saat notifikasi dipanggil
+              print('Notifikasi untuk ${product.nama} dipanggil');
+
+              // Menampilkan notifikasi saat produk ditekan
+              await showNotification(
+                title: 'Produk Dipilih',
+                body: 'Anda memilih produk ${product.nama}',
+                payload: product.id.toString(),
+              );
+
+              // Navigasi ke halaman detail produk
               Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) =>
-                          DetailProduct(data: 'Ini data dari MyPage')));
+                context,
+                MaterialPageRoute(
+                  builder: (_) => DetailProduct(product: product),
+                ),
+              );
             },
           );
         },
